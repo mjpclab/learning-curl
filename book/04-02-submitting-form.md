@@ -1,4 +1,3 @@
-
 # 以表单方式提交数据
 
 ## 用HTML提交表单
@@ -175,7 +174,7 @@ pair1=Alice%26Bob&pair2=Tom%26Jerry
 $ curl --data-urlencode 'a=b=c' http://localhost:8080/
 
 ================================
-Request 1
+Request 51
 ================================
 
 POST / HTTP/1.1
@@ -190,6 +189,92 @@ a=b%3Dc
 
 ### 从文件加载提交数据
 
-## 上传文件
+有时候请求体内容较大，对于需要多次发送的请求，每次在命令行上重复输入非常不便。这时可以把请求体保存在文件中，在curl相关选项值中使用特殊语法来引用文件。
 
-## 提交JSON数据
+对于不做编码处理的`-d`或`--data`，使用`@`+`file_path`的格式指定文件来源：
+
+```shell
+$ echo -n 'username=Tom%26Jerry' > /tmp/data.txt
+
+$ curl -d @/tmp/data.txt http://localhost:8080
+
+================================
+Request 1
+================================
+
+POST / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 20
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/8.10.0
+
+username=Tom%26Jerry
+```
+
+对于`--data-urlencode`，文件中的内容会全部被编码，因此键需要写在命令行上，文件里只保留值的部分，使用`key@value_file`的格式来指定：
+
+```shell
+$ echo -n 'Alice&Bob' > /tmp/pair1.txt
+
+$ echo -n 'Tom&Jerry' > /tmp/pair2.txt
+
+$ curl --data-urlencode pair1@/tmp/pair1.txt --data-urlencode pair2@/tmp/pair2.txt http://localhost:8080
+
+================================
+Request 2
+================================
+
+POST / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 35
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/8.10.0
+
+pair1=Alice%26Bob&pair2=Tom%26Jerry
+```
+
+如果把键也写入文件，所有内容都会被编码，结果可能是非预期的：
+
+```shell
+$ echo -n 'pair1=Alice&Bob' > /tmp/pair1.txt
+
+$ echo -n 'pair2=Tom&Jerry' > /tmp/pair2.txt
+
+$ curl --data-urlencode @/tmp/pair1.txt --data-urlencode @/tmp/pair2.txt http://localhost:8080
+
+================================
+Request 3
+================================
+
+POST / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 39
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/8.10.0
+
+pair1%3DAlice%26Bob&pair2%3DTom%26Jerry
+```
+
+那么，万一真的需要提交以`@`开头的数据该怎么办呢？curl提供了`--data-raw`选项，它不会将`@`开头的数据当作特殊指令处理：
+
+```shell
+$ curl --data-raw @/tmp/data.txt http://localhost:8080
+
+================================
+Request 4
+================================
+
+POST / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Content-Length: 14
+Content-Type: application/x-www-form-urlencoded
+User-Agent: curl/8.10.0
+
+@/tmp/data.txt
+```
+
+当请求体不是键值对的格式时，服务器端上层应用框架无法正确解析出字段。应用开发者如果定制了非标准格式，仍然可以通过自定义逻辑来解析请求体数据。
