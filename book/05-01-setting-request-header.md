@@ -38,3 +38,13 @@ Accept: text/html,text/xml;q=0.9
 Accept-Language: en-US
 User-Agent: curl/8.10.1
 ```
+
+## 快捷设置选项
+
+除了通用选项，curl还为常用请求头提供了快捷设置选项，使用时只需指定请求头的值，而无需显式指明请求头名称。
+
+### 设置用户代理（User Agent）
+-A, --user-agent
+
+### 设置引用来源（Referrer）
+-e, --referer
