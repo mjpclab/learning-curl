@@ -39,12 +39,64 @@ Accept-Language: en-US
 User-Agent: curl/8.10.1
 ```
 
+要删除某个已有的请求头，将其设为空即可，例如：
+
+```shell
+$ curl http://localhost:8080
+
+================================
+Request 11
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: curl/8.10.1
+
+$ curl -H 'Accept:' http://localhost:8080
+
+================================
+Request 12
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+User-Agent: curl/8.10.1
+```
+
 ## 快捷设置选项
 
 除了通用选项，curl还为常用请求头提供了快捷设置选项，使用时只需指定请求头的值，而无需显式指明请求头名称。
 
 ### 设置用户代理（User Agent）
--A, --user-agent
+`-A`或`--user-agent`用于设置用户代理（User Agnet）字符串，效果和`--header 'User-Agent: value'`相同。
+
+```shell
+$ curl -A 'mycurl/0.0.1-alpha' http://localhost:8080
+
+================================
+Request 13
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: mycurl/0.0.1-alpha
+```
 
 ### 设置引用来源（Referrer）
--e, --referer
+`-e`或`--referer`用于设置来源URL,效果同`--header 'Referer: value'`：
+
+```shell
+$ curl -e http://example.com/foo/bar http://localhost:8080
+
+================================
+Request 17
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Referer: http://example.com/foo/bar
+User-Agent: curl/8.10.1
+```
