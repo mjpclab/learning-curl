@@ -1,6 +1,6 @@
 # 显示响应头
 
-curl默认不显式服务器端返回的响应头，可以用`-i`或`--show-headers`启用：
+curl默认不显示服务器端返回的响应头，可以用`-i`或`--show-headers`启用：
 
 ```shell
 $ curl -i http://localhost:8080
