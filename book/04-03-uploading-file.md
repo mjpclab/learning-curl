@@ -211,3 +211,40 @@ Content-Type: text/html
 - `-F 'file4="<html><body><p>hello</p></body></html>";filename=file4.html;type=text/html'`构造了一个文件字段，字段名为`file4`，值为HTML源代码，显式指定文件名属性为`file4.html`，且通过`type`属性指定了私有头部`Content-Type: text/html`
 
 需要注意的是，目前网上许多网盘服务并不使用标准的multipart/form-data格式上传文件，他们一般有定制的私有协议。
+
+### 上传文件到GHFS服务器
+
+为了验证我们构造的multipart/form-data数据格式正确，这次我们使用第二款用于练习的服务器：GHFS接受文件上传，看看上传后的文件是否有效。
+
+假设我们将把本地目录`/tmp/upload`用于共享，且允许用户上传文件：
+
+```shell
+$ mkdir /tmp/upload
+$ ghfs --listen 8081 --root /tmp/upload --upload /
+```
+
+再打开一个新的终端，先确认目录中没有文件：
+
+```shell
+$ ls /tmp/upload/
+```
+
+我们使用`file`字段指定要上传的文件：
+
+```shell
+$ curl -F 'file="hello world";filename=file1.txt' -F 'file="foo bar";filename=file2.txt' 'http://localhost:8081/?upload'
+```
+
+验证文件是否正确上传：
+
+```shell
+$ ls /tmp/upload/
+file1.txt  file2.txt
+
+$ cat /tmp/upload/file1.txt 
+hello world
+$ cat /tmp/upload/file2.txt 
+foo bar
+```
+
+注意由于上传文件内容中没有换行符，显示文件内容会和下一行shell提示符黏连在一起。
