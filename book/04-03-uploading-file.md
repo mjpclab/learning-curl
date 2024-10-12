@@ -157,6 +157,8 @@ $ curl -X POST -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBou
 
 直接构造底层数据太过于繁琐且不灵活，curl提供了`-F`或`--form`选项来方便地构造multipart/form-data，且请求自动以POST方法发出。
 
+注意引用外部文件的格式，字段名后跟随`=`，然后才是`@`+`file_path`，而其他指定外部数据的选项格式中不包含`=`。
+
 ```shell
 $ curl -F 'username=Tom&Jerry' -F 'file1=@/tmp/file1.txt' -F 'file2=@/tmp/file2.txt;filename=second.txt' -F 'file3="file3 content";filename=file3.txt'  -F 'file4="<html><body><p>hello</p></body></html>";filename=file4.html;type=text/html' http://localhost:8080
 
