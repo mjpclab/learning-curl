@@ -85,7 +85,7 @@ User-Agent: mycurl/0.0.1-alpha
 ```
 
 ### 设置引用来源（Referrer）
-`-e`或`--referer`用于设置来源URL,效果同`--header 'Referer: value'`：
+`-e`或`--referer`用于设置来源URL，效果同`--header 'Referer: value'`：
 
 ```shell
 $ curl -e http://example.com/foo/bar http://localhost:8080
