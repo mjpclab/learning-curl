@@ -106,7 +106,7 @@ $ ls -l hex.txt /tmp/share/hex.txt
 ```shell
 $ rm -f hex.txt
 
-$ curl -i http://localhost:8081/hex.txt
+$ curl -I http://localhost:8081/hex.txt
 HTTP/1.1 200 OK
 Last-Modified: Sun, 13 Oct 2024 10:32:09 GMT
 #（略）
@@ -157,7 +157,7 @@ $ cat /tmp/hex.txt
 0123456789abcdef
 ```
 
-续传的本质还是利用了服务器的范围请求，这次添加`-v`选项打印请求与响应头：
+续传的本质还是利用了服务器对范围请求的支持，这次添加`-v`或`--verbose`选项打印请求与响应头：
 
 ```shell
 $ echo -n '0123' > /tmp/hex.txt
