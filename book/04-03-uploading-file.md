@@ -243,9 +243,9 @@ $ curl -F 'file="hello world";filename=file1.txt' -F 'file="foo bar";filename=fi
 $ ls /tmp/upload/
 file1.txt  file2.txt
 
-$ cat /tmp/upload/file1.txt 
+$ cat /tmp/upload/file1.txt
 hello world
-$ cat /tmp/upload/file2.txt 
+$ cat /tmp/upload/file2.txt
 foo bar
 ```
 

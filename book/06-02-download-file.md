@@ -38,9 +38,9 @@ $ cat /tmp/hex2
 ```shell
 $ curl -o 1.txt -o 2.txt http://localhost:8081/hex.txt http://localhost:8081/foobar.txt
 
-$ cat 1.txt 
+$ cat 1.txt
 0123456789abcdef
-$ cat 2.txt 
+$ cat 2.txt
 foo bar
 ```
 
@@ -54,7 +54,7 @@ $ cd ~
 # 请求GHFS
 $ curl -O http://localhost:8081/hex.txt
 
-$ cat hex.txt 
+$ cat hex.txt
 0123456789abcdef
 ```
 
@@ -98,7 +98,7 @@ share.zip
 $ curl -O http://localhost:8081/hex.txt
 
 # 下载后的文件与原始文件日期并不相同
-$ ls -l hex.txt /tmp/share/hex.txt 
+$ ls -l hex.txt /tmp/share/hex.txt
 -rw-r--r-- 1 marjune marjune 16 Oct 13 21:09 hex.txt
 -rw-r--r-- 1 marjune marjune 16 Oct 13 18:32 /tmp/share/hex.txt
 ```
@@ -133,7 +133,7 @@ $ curl -O --no-clobber http://localhost:8081/hex.txt
 $ ls hex*
 hex.txt  hex.txt.1
 
-$ cat hex.txt.1 
+$ cat hex.txt.1
 0123456789abcdef
 
 $ cat hex.txt
