@@ -103,3 +103,11 @@ HTTP/1.1 200 OK
 Www-Authenticate: Basic realm="files"
 （略）
 ```
+
+由于`-u`选项只是组装了`authorization`请求头，自然也可以手动构造base64编码的认证信息：
+
+```shell
+curl -I -H 'authorization: Basic Zm9vYmFyOnNlY3JldHM=' http://localhost:8081
+```
+
+输出效果与上例相同。

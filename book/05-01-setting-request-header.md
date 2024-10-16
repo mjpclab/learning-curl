@@ -85,6 +85,7 @@ User-Agent: mycurl/0.0.1-alpha
 ```
 
 ### 设置引用来源（Referrer）
+
 `-e`或`--referer`用于设置来源URL，效果同`--header 'Referer: value'`：
 
 ```shell
@@ -98,5 +99,41 @@ GET / HTTP/1.1
 Host: localhost:8080
 Accept: */*
 Referer: http://example.com/foo/bar
+User-Agent: curl/8.10.1
+```
+
+### 设置Cookie
+
+`-b`或`--cookie`用于设置cookie，效果通`--header 'Cookie: value'`
+
+```shell
+$ curl -b foo=bar -b session_id=XXXXXXXX http://localhost:8080
+
+================================
+Request 18
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Cookie: foo=bar;session_id=XXXXXXXX
+User-Agent: curl/8.10.1
+```
+
+### 请求数据压缩
+
+`--compressed`选项会设置`Accept-Encoding`请求头，给出curl所支持的压缩格式，如服务器端接受其中一种压缩格式，会通过`Content-Encoding`响应头告知客户端，curl在输出前会自动解压。
+
+```shell
+$ curl --compressed http://localhost:8080
+
+================================
+Request 19
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Accept-Encoding: deflate, gzip, br, zstd
 User-Agent: curl/8.10.1
 ```
