@@ -59,11 +59,11 @@ Start listening on :3000
 - HTTPS模式下默认端口为8443，同样可以通过选项`-port`更改
 
 ```shell
-$ go run . -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
+go run . -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 ```
 
 ```shell
-$ ./server -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
+./server -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 ```
 
 #### 生成测试证书
@@ -71,7 +71,7 @@ $ ./server -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 可以借助openssl命令行工具生成测试证书：
 
 ```shell
-openssl req -x509 -newkey rsa:2048 -keyout mysite.key -nodes -subj '/C=CN/ST=ZheJiang/L=HangZhou/O=CompanyName/OU=DepartmentName/CN=www.mysite.com' -days 365 -sha256 -out mysite.crt
+openssl req -x509 -newkey rsa:2048 -keyout /tmp/mysite.key -nodes -subj '/C=CN/ST=ZheJiang/L=HangZhou/O=CompanyName/OU=DepartmentName/CN=www.mysite.com' -days 365 -sha256 -out /tmp/mysite.crt
 ```
 
 ## 测试运行效果
