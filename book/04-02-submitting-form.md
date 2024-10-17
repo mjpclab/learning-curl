@@ -212,7 +212,7 @@ User-Agent: curl/8.10.0
 username=Tom%26Jerry
 ```
 
-对于`--data-urlencode`，文件中的内容会全部被编码，因此键需要写在命令行上，文件里只保留值的部分，使用`key@value_file`的格式来指定：
+对于`--data-urlencode`，文件中的内容会全部被编码，键需要写在命令行上，文件里只保留值的部分，使用`key@value_file`的格式来指定：
 
 ```shell
 $ echo -n 'Alice&Bob' > /tmp/pair1.txt
@@ -258,7 +258,7 @@ User-Agent: curl/8.10.0
 pair1%3DAlice%26Bob&pair2%3DTom%26Jerry
 ```
 
-那么，万一真的需要提交以`@`开头的数据该怎么办呢？curl提供了`--data-raw`选项，它不会将`@`开头的数据当作特殊指令处理：
+那么，万一真的需要提交以`@`开头的数据该怎么办呢？curl提供了`--data-raw`选项，它不会将`@`开头的数据当作特殊指令处理，而仅仅是字面量值：
 
 ```shell
 $ curl --data-raw @/tmp/data.txt http://localhost:8080

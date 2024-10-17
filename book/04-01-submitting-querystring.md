@@ -75,17 +75,16 @@ Host: localhost:8080
 
 ## 键值对编码
 
-如键或值中出现URL元字符，例如`&`、`=`、`+`、`%`等，需要将其编码为`%`+字节16进制表示，在后续表单提交章节也会涉及同样的编码问题，这里只简单给出一个例子。假设要发送键为“username"，值为"Tom&Jerry"的数据，那么需要对值进行编码：
+如键或值中出现URL元字符，例如`&`、`=`、`+`、`%`等，需要将其编码为`%`+字节16进制表示，在后续表单提交章节也会涉及同样的编码问题。
 
-```shell
-$ curl 'http://localhost:8080/?username=Tom%26Jerry'
+假设在表单字段“x”中填入`A&B|C`，“y”中填入`Tom&Jerry`，提交后可以看到如下回显
 
+```
 ================================
-Request 53
+Request 10
 ================================
 
-GET /?username=Tom%26Jerry HTTP/1.1
+GET /?x=A%26B%7CC&y=Tom%26Jerry HTTP/1.1
 Host: localhost:8080
-Accept: */*
-User-Agent: curl/8.10.0
+（略）
 ```

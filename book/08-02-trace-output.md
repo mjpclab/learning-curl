@@ -55,7 +55,7 @@ User-Agent: curl/8.10.1
 == Info: Connection #0 to host localhost left intact
 ```
 
-可以看到请求与响应的数据都以16进制的格式显示。
+可以看到请求与响应的数据都给出了16进制表示。
 
 如不需要显示16进制数据，可以使用`--trace-ascii`选项代替`--trace`：
 
@@ -103,7 +103,7 @@ User-Agent: curl/8.10.1
 == Info: Connection #0 to host localhost left intact
 ```
 
-无论是`--trace`还是`--trace-time`，都可以附加`--trace-time`在日志的开头打印当前时间：
+无论是`--trace`还是`--trace-ascii`，都可以附加`--trace-time`在日志的开头打印当前时间：
 
 ```shell
 $ curl --trace-ascii - --trace-time http://localhost:8080/

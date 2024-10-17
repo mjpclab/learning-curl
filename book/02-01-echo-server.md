@@ -6,9 +6,9 @@
 
 ## 编译和运行
 
-回显专用服务器使用Go语言开发，因此需要安装Go开发环境来编译，详见[Go官方网站](https://go.dev/)或[Go中国镜像站](https://golang.google.cn/)。
+回显服务器使用Go语言开发，因此需要安装Go开发环境来编译，详见[Go官方网站](https://go.dev/)或[Go中国镜像站](https://golang.google.cn/)。
 
-在安装配置完Go工具链后，进入回显专用服务器源代码目录：
+在安装配置完Go工具链后，进入回显服务器源代码目录：
 
 ```shell
 $ cd echo-server

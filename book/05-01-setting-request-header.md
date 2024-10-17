@@ -104,7 +104,7 @@ User-Agent: curl/8.10.1
 
 ### 设置Cookie
 
-`-b`或`--cookie`用于设置cookie，效果通`--header 'Cookie: value'`
+`-b`或`--cookie`用于设置cookie，效果同`--header 'Cookie: value'`
 
 ```shell
 $ curl -b foo=bar -b session_id=XXXXXXXX http://localhost:8080

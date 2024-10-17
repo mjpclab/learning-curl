@@ -39,23 +39,11 @@ line 2 of file 1
 line 3 of file 1
 EOF
 
-$ cat /tmp/file1.txt
-line 1 of file 1
-line 2 of file 1
-line 3 of file 1
-```
-
-```shell
 $ cat << EOF > /tmp/file2.txt
 line 1 of file 2
 line 2 of file 2
 line 3 of file 2
 EOF
-
-$ cat /tmp/file2.txt
-line 1 of file 2
-line 2 of file 2
-line 3 of file 2
 ```
 
 用浏览器打开HTML页面，填写文本字段，点击文件输入框选择相应文件，如下图所示：

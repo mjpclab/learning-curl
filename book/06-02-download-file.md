@@ -46,7 +46,7 @@ foo bar
 
 ## 自动从URL提取文件名
 
-通常我们希望下载后的文件名与原始资源保持一直，通过使用`-O`或`--remote-name`选项，curl可以从URL中提取出文件名部分，把它当作下载后的本地文件名。与`-o`类似，一个`-O`也只针对一个URL。
+通常我们希望下载后的文件名与原始资源保持一致，通过使用`-O`或`--remote-name`选项，curl可以从URL中提取出文件名部分，把它当作下载后的本地文件名。与`-o`类似，一个`-O`也只针对一个URL。
 
 ```shell
 $ cd ~
@@ -84,7 +84,6 @@ Content-Disposition: attachment; filename=share.zip; filename*=UTF-8''share.zip
 curl提供了`-J`或`--remote-header-name`来提取`Content-Disposition`响应头中的文件名，需要配合前面介绍的`-O`来将文件保存的文件系统：
 
 ```shell
-$ rm -f ~/Downloads/curl_response
 $ curl -O -J --output-dir ~/Downloads/ 'http://localhost:8081/?zip'
 $ ls Downloads/
 share.zip
