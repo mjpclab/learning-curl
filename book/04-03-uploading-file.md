@@ -1,6 +1,4 @@
-# 上传文件
-
-## 用HTML表单上传文件
+# 用HTML表单上传文件
 
 让我们再次通过 HTML 的例子来学习上传文件时的请求格式。先构建一个上传用的 HTML 页面：
 
@@ -99,9 +97,9 @@ line 3 of file 2
 - 文件字段的值即文件的内容，所以可以是任意的二进制字节序列，并不仅限于可打印字符，通过回显服务器回显有可能会得到乱码
 - 显然文件本身的内容不能和`boundary`的值有冲突，否则part会意外中断，后续数据格式不合法从而导致解析失败。浏览器会通过一定的算法最大限度地保证分隔符的唯一性
 
-## 用curl上传表单
+# 用curl上传表单
 
-### 手动构造multipart/form-data
+## 手动构造multipart/form-data
 
 根据HTML提交的上传内容，我们可以手动构造curl上传文件请求的底层数据。先将回显的主体部分（首个`--`+boundary分隔符到末尾）的内容保存成一个外部数据文件：
 
@@ -141,7 +139,7 @@ $ curl -X POST -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBou
 
 回显内容与之前通过HTML上传的一致。
 
-### 通过curl选项自动构造multipart/form-data
+## 通过curl选项自动构造multipart/form-data
 
 直接构造底层数据太过于繁琐且不灵活，curl提供了`-F`或`--form`选项来方便地构造multipart/form-data，且请求自动以POST方法发出。
 
@@ -202,7 +200,7 @@ Content-Type: text/html
 
 需要注意的是，目前网上许多网盘服务并不使用标准的multipart/form-data格式上传文件，他们一般有定制的私有协议。
 
-### 上传文件到GHFS服务器
+## 上传文件到GHFS服务器
 
 为了验证我们构造的multipart/form-data数据格式正确，这次我们使用第二款用于练习的服务器：GHFS接受文件上传，看看上传后的文件是否有效。
 
