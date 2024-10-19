@@ -26,7 +26,8 @@
 
 - 方法为`POST`
 - 编码方式`multipart/form-data`
-- 增加了2个`type`属性为`file`的`input`元素，其表现形式为文件选择框，它允许用户选择本地文件用于上传
+
+表单中还增加了2个`type`属性为`file`的`input`元素，其表现形式为文件选择框，它允许用户选择本地文件用于上传
 
 再准备2个文件用于上传测试：
 
@@ -143,7 +144,7 @@ $ curl -X POST -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBou
 
 直接构造底层数据太过于繁琐且不灵活，curl提供了`-F`或`--form`选项来方便地构造multipart/form-data，且请求自动以POST方法发出。
 
-注意引用外部文件的格式，字段名后跟随`=`，然后才是`@`+`file_path`，而其他指定外部数据的选项格式中不包含`=`。
+注意引用外部文件的格式，字段名后跟随`=`，然后才是`@data_file`，而其他指定外部数据的选项格式中不包含`=`。
 
 ```shell
 $ curl -F 'username=Tom&Jerry' -F 'file1=@/tmp/file1.txt' -F 'file2=@/tmp/file2.txt;filename=second.txt' -F 'file3="file3 content";filename=file3.txt'  -F 'file4="<html><body><p>hello</p></body></html>";filename=file4.html;type=text/html' http://localhost:8080

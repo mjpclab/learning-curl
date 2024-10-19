@@ -79,11 +79,11 @@ Content-Disposition: attachment; filename=share.zip; filename*=UTF-8''share.zip
 （略）
 ```
 
-curl提供了`-J`或`--remote-header-name`来提取`Content-Disposition`响应头中的文件名，需要配合前面介绍的`-O`来将文件保存的文件系统：
+curl提供了`-J`或`--remote-header-name`来提取`Content-Disposition`响应头中的文件名，需要配合前面介绍的`-O`来将文件保存到文件系统：
 
 ```shell
 $ curl -O -J --output-dir ~/Downloads/ 'http://localhost:8081/?zip'
-$ ls Downloads/
+$ ls ~/Downloads/
 share.zip
 ```
 
@@ -139,7 +139,7 @@ dummy
 
 # 续传文件
 
-如果文件下载到一半中断，想要接着下载而不是从头开始，只要服务器支持范围请求，就可以利用curl的`-C`或`--continue-at`选项可以从指定的字节偏移开始下载。
+如果文件下载到一半中断，想要接着下载而不是从头开始，只要服务器支持范围请求，就可以利用curl的`-C`或`--continue-at`选项从指定的字节偏移开始下载。
 
 ```shell
 $ echo -n '0123' > /tmp/hex.txt
