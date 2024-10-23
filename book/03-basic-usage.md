@@ -18,7 +18,11 @@ curl命令之后可以跟随选项、选项的值或URL，都可以出现多次�
 这两个选项会同时作用在混排的两个URL的请求上，而不是第一个选项对第一个URL生效，第二个选项对第二个URL生效：
 
 ```shell
-$ curl --request POST http://localhost:8080/foo --user-agent 'httpClient/1.0' http://localhost:8080/bar
+$ curl \
+--request POST \
+http://localhost:8080/foo \
+--user-agent 'httpClient/1.0' \
+http://localhost:8080/bar
 
 ================================
 Request 1

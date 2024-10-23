@@ -3,7 +3,9 @@
 假设我们想把`1.2.3.4:8888`的请求重写为`localhost:8000`，那么可以：
 
 ```shell
-$ curl -v --connect-to 1.2.3.4:8888:localhost:8080 http://1.2.3.4:8888/foo/bar
+$ curl -v \
+--connect-to 1.2.3.4:8888:localhost:8080 \
+http://1.2.3.4:8888/foo/bar
 * Connecting to hostname: localhost
 * Connecting to port: 8080
 * Host localhost:8080 was resolved.

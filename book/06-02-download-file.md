@@ -34,7 +34,11 @@ $ cat /tmp/hex2
 比较特别的是，`-o`只对一个URL生效。如果curl命令后提供了多个URL，第一个`-o`对应第一个URL，第二个`-o`对应第二个URL，以此类推：
 
 ```shell
-$ curl -o 1.txt -o 2.txt http://localhost:8081/hex.txt http://localhost:8081/foobar.txt
+$ curl \
+-o 1.txt \
+-o 2.txt \
+http://localhost:8081/hex.txt \
+http://localhost:8081/foobar.txt
 
 $ cat 1.txt
 0123456789abcdef

@@ -5,7 +5,10 @@
 假设我们只关心某个请求的响应状态码，那么可以这样指定格式化信息：
 
 ```shell
-$ curl -w 'response status: %{http_code}\n' -o /dev/null -s http://localhost:8080
+$ curl -s \
+-o /dev/null \
+-w 'response status: %{http_code}\n' \
+http://localhost:8080
 response status: 200
 ```
 
@@ -14,10 +17,16 @@ response status: 200
 `-w`默认输出到标准输出，如要输出到标准错误，指定特殊变量`stderr`即可：
 
 ```shell
-$ curl -w 'response status: %{http_code}\n' -o /dev/null -s http://localhost:8080 2> /dev/null
+$ curl -s \
+-o /dev/null \
+-w 'response status: %{http_code}\n' \
+http://localhost:8080 2> /dev/null
 response status: 200	# 丢弃stderr，但格式化信息从stdout输出，因而不受影响
 
-$ curl -w '%{stderr}response status: %{http_code}\n' -o /dev/null -s http://localhost:8080 2> /dev/null
+$ curl -s \
+-o /dev/null \
+-w '%{stderr}response status: %{http_code}\n' \
+http://localhost:8080 2> /dev/null
 # 无输出
 ```
 

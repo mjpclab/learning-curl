@@ -39,7 +39,12 @@ curl -X POST -H 'accept: application/json' http://localhost:8080/notify
 使用选项`-d`或`--data`来指定请求体的内容。例如请求一个Restful的API来发出一篇帖子，可能是这样的：
 
 ```shell
-curl -X POST -H 'accept: application/json' -d '{"title":"Post Title","content":"Post Content"}' http://localhost:8080/add-post
+curl \
+-X POST \
+-H 'accept: application/json' \
+-H 'content-type: application/json' \
+-d '{"title":"Post Title","content":"Post Content"}' \
+http://localhost:8080/add-post
 ```
 
 # 参考手册

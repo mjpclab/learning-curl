@@ -135,7 +135,11 @@ EOF
 为避免curl将数据合并成一行（模拟HTML表单提交行为），这里需要用`--data-binary`而不是`--data`以保证curl不对数据作额外处理。
 
 ```shell
-$ curl -X POST -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryjJii9Dn6GejdGMjK' --data-binary @/tmp/body.txt http://localhost:8080
+$ curl \
+-X POST \
+-H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryjJii9Dn6GejdGMjK' \
+--data-binary @/tmp/body.txt \
+http://localhost:8080
 ```
 
 回显内容与之前通过HTML上传的一致。
@@ -147,7 +151,13 @@ $ curl -X POST -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBou
 注意引用外部文件的格式，字段名后跟随`=`，然后才是`@data_file`，而其他指定外部数据的选项格式中不包含`=`。
 
 ```shell
-$ curl -F 'username=Tom&Jerry' -F 'file1=@/tmp/file1.txt' -F 'file2=@/tmp/file2.txt;filename=second.txt' -F 'file3="file3 content";filename=file3.txt'  -F 'file4="<html><body><p>hello</p></body></html>";filename=file4.html;type=text/html' http://localhost:8080
+$ curl \
+-F 'username=Tom&Jerry' \
+-F 'file1=@/tmp/file1.txt' \
+-F 'file2=@/tmp/file2.txt;filename=second.txt' \
+-F 'file3="file3 content";filename=file3.txt' \
+-F 'file4="<html><body><p>hello</p></body></html>";filename=file4.html;type=text/html' \
+http://localhost:8080
 
 ================================
 Request 3
@@ -221,7 +231,10 @@ $ ls /tmp/upload/
 我们使用`file`字段指定要上传的文件：
 
 ```shell
-$ curl -F 'file="hello world";filename=file1.txt' -F 'file="foo bar";filename=file2.txt' 'http://localhost:8081/?upload'
+$ curl \
+-F 'file="hello world";filename=file1.txt' \
+-F 'file="foo bar";filename=file2.txt' \
+'http://localhost:8081/?upload'
 ```
 
 验证文件是否正确上传：

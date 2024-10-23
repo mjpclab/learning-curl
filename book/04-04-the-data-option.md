@@ -22,7 +22,12 @@ $ echo -n 'a=1&b=2' > /tmp/params.txt
 
 $ echo -n 'Tom&Jerry' > /tmp/username.txt
 
-$ curl -G -d 'x=3&y=4' -d @/tmp/params.txt --data-urlencode username@/tmp/username.txt http://localhost:8080/?foo=bar
+$ curl \
+-G \
+-d 'x=3&y=4' \
+-d @/tmp/params.txt \
+--data-urlencode username@/tmp/username.txt \
+'http://localhost:8080/?foo=bar'
 
 ================================
 Request 5
@@ -41,7 +46,10 @@ User-Agent: curl/8.10.1
 ```shell
 $ echo -n 'Alice&Bob' > /tmp/pair1.txt
 
-$ curl --url-query pair1@/tmp/pair1.txt --url-query 'pair2=Tom&Jerry' 'http://localhost:8080?x=1&y=2'
+$ curl \
+--url-query pair1@/tmp/pair1.txt \
+--url-query 'pair2=Tom&Jerry' \
+'http://localhost:8080?x=1&y=2'
 
 ================================
 Request 3
@@ -56,7 +64,10 @@ User-Agent: curl/8.10.1
 如要避免被编码，或者传递给`--url-query`的数据是已经过编码的，在其选项值的开头加上`+`即可：
 
 ```shell
-$ curl --url-query +pair1@/tmp/pair1.txt --url-query '+pair2=Tom&Jerry' http://localhost:8080
+$ curl \
+--url-query +pair1@/tmp/pair1.txt \
+--url-query '+pair2=Tom&Jerry' \
+http://localhost:8080
 
 ================================
 Request 4

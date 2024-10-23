@@ -150,7 +150,10 @@ username=Tom%26Jerry
 一个`--data-urlencode`选项只能指定一个键值对，提交多个参数需要多次使用该选项来分别指定：
 
 ```shell
-$ curl --data-urlencode 'pair1=Alice&Bob' --data-urlencode 'pair2=Tom&Jerry' http://localhost:8080
+$ curl \
+--data-urlencode 'pair1=Alice&Bob' \
+--data-urlencode 'pair2=Tom&Jerry' \
+http://localhost:8080
 
 ================================
 Request 50
@@ -217,7 +220,10 @@ $ echo -n 'Alice&Bob' > /tmp/pair1.txt
 
 $ echo -n 'Tom&Jerry' > /tmp/pair2.txt
 
-$ curl --data-urlencode pair1@/tmp/pair1.txt --data-urlencode pair2@/tmp/pair2.txt http://localhost:8080
+$ curl \
+--data-urlencode pair1@/tmp/pair1.txt \
+--data-urlencode pair2@/tmp/pair2.txt \
+http://localhost:8080
 
 ================================
 Request 2
@@ -240,7 +246,10 @@ $ echo -n 'pair1=Alice&Bob' > /tmp/pair1.txt
 
 $ echo -n 'pair2=Tom&Jerry' > /tmp/pair2.txt
 
-$ curl --data-urlencode @/tmp/pair1.txt --data-urlencode @/tmp/pair2.txt http://localhost:8080
+$ curl \
+--data-urlencode @/tmp/pair1.txt \
+--data-urlencode @/tmp/pair2.txt \
+http://localhost:8080
 
 ================================
 Request 3
