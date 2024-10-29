@@ -1,4 +1,6 @@
-追踪请求数据使用`--trace`选项，其功能与`--verbose`有些相似，不过侧重点在于传输的数据，该选项要求提供一个文件路径作为追踪数据的写入目标，可使用`-`指定输出到标准输出：
+# 追踪传输数据
+
+可使用`--trace`选项来追踪请求与响应数据，其功能与`--verbose`有些相似，不过侧重点在于传输的数据，该选项要求提供一个文件路径作为追踪数据日志的写入目标，可使用`-`指定输出到标准输出：
 
 ```shell
 $ curl --trace - http://localhost:8080/
@@ -55,6 +57,8 @@ User-Agent: curl/8.10.1
 
 可以看到请求与响应的数据都给出了16进制表示。
 
+# 仅显示传输内容
+
 如不需要显示16进制数据，可以使用`--trace-ascii`选项代替`--trace`：
 
 ```shell
@@ -101,7 +105,176 @@ User-Agent: curl/8.10.1
 == Info: Connection #0 to host localhost left intact
 ```
 
-无论是`--trace`还是`--trace-ascii`，都可以附加`--trace-time`在日志的开头打印当前时间：
+# 显示传输与连接标识
+
+无论是`--trace`还是`--trace-ascii`，如一次请求多个URL，都可以附加`--trace-ids`在每条日志的开头显示`[传输号-连接号]`的标识：
+
+```shell
+$ curl --trace-ascii - --trace-ids http://localhost:8080/foo http://localhost:8080/bar
+[0-0] == Info: Host localhost:8080 was resolved.
+[0-0] == Info: IPv6: ::1
+[0-0] == Info: IPv4: 127.0.0.1
+[0-0] == Info:   Trying [::1]:8080...
+[0-0] == Info: Connected to localhost (::1) port 8080
+[0-0] == Info: using HTTP/1.x
+[0-0] => Send header, 81 bytes (0x51)
+0000: GET /foo HTTP/1.1
+0013: Host: localhost:8080
+0029: User-Agent: curl/8.10.1
+0042: Accept: */*
+004f: 
+[0-0] == Info: Request completely sent off
+[0-0] <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+[0-0] <= Recv header, 26 bytes (0x1a)
+0000: Content-Type: text/plain
+[0-0] <= Recv header, 37 bytes (0x25)
+0000: Date: Tue, 29 Oct 2024 15:59:43 GMT
+[0-0] <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 159
+[0-0] <= Recv header, 2 bytes (0x2)
+0000: 
+[0-0] <= Recv data, 159 bytes (0x9f)
+0000: .================================.Request 19.===================
+0040: =============..GET /foo HTTP/1.1
+0062: Host: localhost:8080
+0078: Accept: */*
+0085: User-Agent: curl/8.10.1
+009e: .
+
+================================
+Request 19
+================================
+
+GET /foo HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: curl/8.10.1
+[0-0] == Info: Connection #0 to host localhost left intact
+[1-0] == Info: Re-using existing connection with host localhost
+[1-0] => Send header, 81 bytes (0x51)
+0000: GET /bar HTTP/1.1
+0013: Host: localhost:8080
+0029: User-Agent: curl/8.10.1
+0042: Accept: */*
+004f: 
+[1-0] == Info: Request completely sent off
+[1-0] <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+[1-0] <= Recv header, 26 bytes (0x1a)
+0000: Content-Type: text/plain
+[1-0] <= Recv header, 37 bytes (0x25)
+0000: Date: Tue, 29 Oct 2024 15:59:43 GMT
+[1-0] <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 159
+[1-0] <= Recv header, 2 bytes (0x2)
+0000: 
+[1-0] <= Recv data, 159 bytes (0x9f)
+0000: .================================.Request 20.===================
+0040: =============..GET /bar HTTP/1.1
+0062: Host: localhost:8080
+0078: Accept: */*
+0085: User-Agent: curl/8.10.1
+009e: .
+
+================================
+Request 20
+================================
+
+GET /bar HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: curl/8.10.1
+[1-0] == Info: Connection #0 to host localhost left intact
+```
+
+上例中第一个请求的标识为`[0-0]`，传输号为`0`，连接号也为`0`。而第二个请求的标识为`[1-0]`，传输号为`1`，以区别于第一个URL请求，而连接号依旧为`0`，说明curl复用了第一个请求所使用的连接，从日志`[1-0] == Info: Re-using existing connection with host localhost`当中也能印证这一点。
+
+现在，我们故意使用两个不同的主机名去访问两个URL，看看标识会有何不同：
+
+```shell
+$ curl --trace-ascii - --trace-ids http://127.0.0.1:8080/foo http://127.0.0.2:8080/bar
+[0-0] == Info:   Trying 127.0.0.1:8080...
+[0-0] == Info: Connected to 127.0.0.1 (127.0.0.1) port 8080
+[0-0] == Info: using HTTP/1.x
+[0-0] => Send header, 81 bytes (0x51)
+0000: GET /foo HTTP/1.1
+0013: Host: 127.0.0.1:8080
+0029: User-Agent: curl/8.10.1
+0042: Accept: */*
+004f: 
+[0-0] == Info: Request completely sent off
+[0-0] <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+[0-0] <= Recv header, 26 bytes (0x1a)
+0000: Content-Type: text/plain
+[0-0] <= Recv header, 37 bytes (0x25)
+0000: Date: Tue, 29 Oct 2024 16:10:31 GMT
+[0-0] <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 159
+[0-0] <= Recv header, 2 bytes (0x2)
+0000: 
+[0-0] <= Recv data, 159 bytes (0x9f)
+0000: .================================.Request 23.===================
+0040: =============..GET /foo HTTP/1.1
+0062: Host: 127.0.0.1:8080
+0078: Accept: */*
+0085: User-Agent: curl/8.10.1
+009e: .
+
+================================
+Request 23
+================================
+
+GET /foo HTTP/1.1
+Host: 127.0.0.1:8080
+Accept: */*
+User-Agent: curl/8.10.1
+[0-0] == Info: Connection #0 to host 127.0.0.1 left intact
+[1-1] == Info:   Trying 127.0.0.2:8080...
+[1-1] == Info: Connected to 127.0.0.2 (127.0.0.2) port 8080
+[1-1] == Info: using HTTP/1.x
+[1-1] => Send header, 81 bytes (0x51)
+0000: GET /bar HTTP/1.1
+0013: Host: 127.0.0.2:8080
+0029: User-Agent: curl/8.10.1
+0042: Accept: */*
+004f: 
+[1-1] == Info: Request completely sent off
+[1-1] <= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+[1-1] <= Recv header, 26 bytes (0x1a)
+0000: Content-Type: text/plain
+[1-1] <= Recv header, 37 bytes (0x25)
+0000: Date: Tue, 29 Oct 2024 16:10:31 GMT
+[1-1] <= Recv header, 21 bytes (0x15)
+0000: Content-Length: 159
+[1-1] <= Recv header, 2 bytes (0x2)
+0000: 
+[1-1] <= Recv data, 159 bytes (0x9f)
+0000: .================================.Request 24.===================
+0040: =============..GET /bar HTTP/1.1
+0062: Host: 127.0.0.2:8080
+0078: Accept: */*
+0085: User-Agent: curl/8.10.1
+009e: .
+
+================================
+Request 24
+================================
+
+GET /bar HTTP/1.1
+Host: 127.0.0.2:8080
+Accept: */*
+User-Agent: curl/8.10.1
+[1-1] == Info: Connection #1 to host 127.0.0.2 left intact
+```
+
+由于请求了两个URL，依旧有两个传输号。而这次由于目标主机不同，curl不得不创建新的TCP连接，因而也有两个连接号。
+
+# 显示时间
+
+无论是`--trace`还是`--trace-ascii`，都可以附加`--trace-time`在每条日志的开头打印当前时间：
 
 ```shell
 $ curl --trace-ascii - --trace-time http://localhost:8080/
