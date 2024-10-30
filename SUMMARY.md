@@ -24,7 +24,7 @@
   * [带有TLS的请求](book/07-02-requesting-with-tls.md)
 * [本地调试和输出控制](book/08-00-local-debug-and-output-control.md)
   * [输出详细信息](book/08-01-verbose-output.md)
-  * [追踪请求数据](book/08-02-trace-output.md)
+  * [追踪请求与响应](book/08-02-trace-output.md)
   * [抑制输出](book/08-03-avoid-outputing.md)
   * [输出格式化信息](book/08-04-output-formatted-info.md)
 * [调试远程服务](book/09-00-debug-the-remote.md)
