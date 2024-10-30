@@ -319,3 +319,9 @@ Accept: */*
 User-Agent: curl/8.10.1
 20:54:53.541531 == Info: Connection #0 to host localhost left intact
 ```
+
+# 配置要显示的附加信息
+
+实际上，`--trace-ids`和`--trace-time`都是`--trace-config`的特例。`--trace-config`接受一个逗号分割的列表，指出要附加的信息。例如`--trace-config ids,time`相当于分别指定`--trace-ids`和`--trace-time`。
+
+`--trace-config`还支持一些其它值，详见curl官方文档。
