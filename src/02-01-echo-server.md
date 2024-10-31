@@ -2,7 +2,7 @@
 
 后续章节的示例演示，也会默认以回显服务器返回的输出内容来展示curl的执行效果。
 
-# 编译和运行
+## 编译和运行
 
 [回显服务器](https://github.com/mjpclab/learning-curl/tree/main/echo-server)使用Go语言开发，因此需要安装Go开发环境来编译，详见[Go官方网站](https://go.dev/)或[Go中国镜像站](https://golang.google.cn/)。
 
@@ -32,9 +32,9 @@ $ ./server
 Start listening on :8080
 ```
 
-# 指定运行参数
+## 指定运行参数
 
-## 指定监听端口
+### 指定监听端口
 
 监听端口默认为8080，可通过选项`-port`更改：
 
@@ -48,7 +48,7 @@ $ ./server -port 3000
 Start listening on :3000
 ```
 
-## 以HTTPS方式运行
+### 以HTTPS方式运行
 
 服务器可以按HTTPS（TLS）连接方式运行：
 
@@ -64,7 +64,7 @@ go run . -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 ./server -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 ```
 
-### 生成测试证书
+#### 生成测试证书
 
 可以借助openssl命令行工具生成测试证书：
 
@@ -72,7 +72,7 @@ go run . -port 9443 -cert /tmp/mysite.crt -key /tmp/mysite.key
 openssl req -x509 -newkey rsa:2048 -keyout /tmp/mysite.key -nodes -subj '/C=CN/ST=ZheJiang/L=HangZhou/O=CompanyName/OU=DepartmentName/CN=www.mysite.com' -days 365 -sha256 -out /tmp/mysite.crt
 ```
 
-# 测试运行效果
+## 测试运行效果
 
 假设服务器已经用默认选项启动，即监听在端口8080且非HTTPS连接模式，此时在命令行中没有任何输出内容，可能给人造成一种“假死”的错觉，请保持该命令行运行而不要中断或关闭它。
 

@@ -7,7 +7,7 @@ $ echo -n 'foo bar' > /tmp/share/foobar.txt
 $ ghfs -l 8081 -r /tmp/share/ --archive /
 ```
 
-# 指定输出位置
+## 指定输出位置
 
 默认情况下，curl会把请求的响应体通过标准输出（stdout）打印到终端上。我们可以通过输出重定向或curl自身的`-o`或`--output`选项，将响应体输出到外部文件。
 
@@ -46,7 +46,7 @@ $ cat 2.txt
 foo bar
 ```
 
-# 自动从URL提取文件名
+## 自动从URL提取文件名
 
 通常我们希望下载后的文件名与原始资源保持一致，通过使用`-O`或`--remote-name`选项，curl可以从URL中提取出文件名部分，把它当作下载后的本地文件名。与`-o`类似，一个`-O`也只针对一个URL。
 
@@ -72,7 +72,7 @@ $ cat ~/Downloads/hex.txt
 0123456789abcdef
 ```
 
-# 自动从`Content-Disposition`响应头提取文件名
+## 自动从`Content-Disposition`响应头提取文件名
 
 有些资源是通过URL对应的服务器端逻辑动态生成的，无法通过URL末尾部分正确地推断出文件名，通常服务器端程序会通过`Content-Disposition`响应头给出参考文件名。让我们先试试请求GHFS打包目录到zip文件的`HEAD`调用：
 
@@ -91,7 +91,7 @@ $ ls ~/Downloads/
 share.zip
 ```
 
-# 保留资源的修改时间
+## 保留资源的修改时间
 
 如果获取的资源包含响应头`Last-Modified`，那么只要启用了`--remote-time`，curl可以将下载后的文件日期也改成该值。
 
@@ -119,7 +119,7 @@ $ ls -l hex.txt /tmp/share/hex.txt
 -rw-r--r-- 1 marjune marjune 16 Oct 13 18:32 /tmp/share/hex.txt
 ```
 
-# 避免覆盖已有文件
+## 避免覆盖已有文件
 
 如想要避免覆盖现有文件，可以指定`--no-clobber`，curl会把额外的后缀添加到文件名之后。
 
@@ -141,7 +141,7 @@ $ cat hex.txt
 dummy
 ```
 
-# 续传文件
+## 续传文件
 
 如果文件下载到一半中断，想要接着下载而不是从头开始，只要服务器支持范围请求，就可以利用curl的`-C`或`--continue-at`选项从指定的字节偏移开始下载。
 

@@ -1,4 +1,4 @@
-# 追踪传输数据
+## 追踪传输数据
 
 可使用`--trace`选项来追踪请求与响应数据，其功能与`--verbose`有些相似，不过侧重点在于传输的数据，该选项要求提供一个文件路径作为追踪数据日志的写入目标，可使用`-`指定输出到标准输出：
 
@@ -57,7 +57,7 @@ User-Agent: curl/8.10.1
 
 可以看到请求与响应的数据都给出了16进制表示。
 
-# 仅显示传输内容
+## 仅显示传输内容
 
 如不需要显示16进制数据，可以使用`--trace-ascii`选项代替`--trace`：
 
@@ -105,7 +105,7 @@ User-Agent: curl/8.10.1
 == Info: Connection #0 to host localhost left intact
 ```
 
-# 显示传输与连接标识
+## 显示传输与连接标识
 
 无论是`--trace`还是`--trace-ascii`，如一次请求多个URL，都可以附加`--trace-ids`在每条日志的开头显示`[传输号-连接号]`的标识：
 
@@ -272,7 +272,7 @@ User-Agent: curl/8.10.1
 
 由于请求了两个URL，依旧有两个传输号。而这次由于目标主机不同，curl不得不创建新的TCP连接，因而也有两个连接号。
 
-# 显示时间
+## 显示时间
 
 无论是`--trace`还是`--trace-ascii`，都可以附加`--trace-time`在每条日志的开头打印当前时间：
 
@@ -320,7 +320,7 @@ User-Agent: curl/8.10.1
 20:54:53.541531 == Info: Connection #0 to host localhost left intact
 ```
 
-# 配置要显示的附加信息
+## 配置要显示的附加信息
 
 实际上，`--trace-ids`和`--trace-time`都是`--trace-config`的特例。`--trace-config`接受一个逗号分割的列表，指出要附加的信息。例如`--trace-config ids,time`相当于分别指定`--trace-ids`和`--trace-time`。
 

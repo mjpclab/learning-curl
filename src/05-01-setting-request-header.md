@@ -1,4 +1,4 @@
-# 通用设置选项
+## 通用设置选项
 
 curl提供了许多选项来设置请求头，最一般的用法是通过`-H`或`--header`来设置，其值格式为`Header-Name: value`，可以出现多次。例如：
 
@@ -65,11 +65,11 @@ Host: localhost:8080
 User-Agent: curl/8.10.1
 ```
 
-# 快捷设置选项
+## 快捷设置选项
 
 除了通用选项，curl还为常用请求头提供了快捷设置选项，使用时只需指定请求头的值，而无需显式指明请求头名称。
 
-## 设置用户代理（User Agent）
+### 设置用户代理（User Agent）
 `-A`或`--user-agent`用于设置用户代理（User Agnet）字符串，效果和`--header 'User-Agent: value'`相同。
 
 ```shell
@@ -85,7 +85,7 @@ Accept: */*
 User-Agent: mycurl/0.0.1-alpha
 ```
 
-## 设置引用来源（Referrer）
+### 设置引用来源（Referrer）
 
 `-e`或`--referer`用于设置来源URL，效果同`--header 'Referer: value'`：
 
@@ -103,7 +103,7 @@ Referer: http://example.com/foo/bar
 User-Agent: curl/8.10.1
 ```
 
-## 设置Cookie
+### 设置Cookie
 
 `-b`或`--cookie`用于设置cookie，效果同`--header 'Cookie: value'`
 
@@ -121,7 +121,7 @@ Cookie: foo=bar;session_id=XXXXXXXX
 User-Agent: curl/8.10.1
 ```
 
-## 请求数据压缩
+### 请求数据压缩
 
 `--compressed`选项会设置`Accept-Encoding`请求头，给出curl所支持的压缩格式，如服务器端接受其中一种压缩格式，会通过`Content-Encoding`响应头告知客户端，curl在输出前会自动解压。
 
