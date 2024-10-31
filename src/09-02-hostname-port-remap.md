@@ -1,3 +1,5 @@
+# 主机名和端口重映射
+
 `--resolve`可以重新映射域名地址，但无法重写目标端口。`--connect-to`可以同时重写目标主机和端口，并保持请求主机头为原始值。其参数格式为`SOURCE_HOST:SOURCE_PORT:DEST_HOST:DEST_PORT`。
 
 假设我们想把`1.2.3.4:8888`的请求重写为`localhost:8000`，那么可以：
