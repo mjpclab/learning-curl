@@ -12,18 +12,7 @@
 最终的HTML如下：
 
 ```html
-<html>
-  <head>
-    <title>form POST test</title>
-  </head>
-  <body>
-    <form action="http://localhost:8080/" method="post">
-      <div>x: <input name="x" /></div>
-      <div>y: <input name="y" /></div>
-      <div><button type="submit">Submit</button></div>
-    </form>
-  </body>
-</html>
+{{#include source/form-post.html}}
 ```
 
 再次填写并提交表单，看看回显信息会有何变化：
@@ -62,18 +51,7 @@ x=100&y=200
 修改后的HTML如下：
 
 ```html
-<html>
-  <head>
-    <title>form POST test</title>
-  </head>
-  <body>
-    <form action="http://localhost:8080/" method="post">
-      <div>xy: <input name="x&y" /></div>
-      <div>username: <input name="user=name" /></div>
-      <div><button type="submit">Submit</button></div>
-    </form>
-  </body>
-</html>
+{{#include source/form-post-urlencode.html}}
 ```
 
 用浏览器打开该文件，第一个输入框填写"100+200"，第二个输入框填写"Tom&Jerry"，提交表单后回显如下：

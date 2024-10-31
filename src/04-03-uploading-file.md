@@ -5,23 +5,7 @@
 让我们再次通过 HTML 的例子来学习上传文件时的请求格式。先构建一个上传用的 HTML 页面：
 
 ```html
-<html>
-  <head>
-    <title>form upload test</title>
-  </head>
-  <body>
-    <form
-      action="http://localhost:8080/"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <div>username: <input name="username" /></div>
-      <div>file1: <input type="file" name="file1" /></div>
-      <div>file2: <input type="file" name="file2" /></div>
-      <div><button type="submit">Submit</button></div>
-    </form>
-  </body>
-</html>
+{{#include source/form-upload.html}}
 ```
 
 从代码中我们可以注意到上传文件所需的要求：

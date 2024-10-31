@@ -35,18 +35,7 @@ User-Agent: curl/8.10.0
 也可以通过构造一个HTML表单，通过浏览器来发送查询字符串。先创建一个HTML文件，其中包含一个表单：
 
 ```html
-<html>
-  <head>
-    <title>form GET test</title>
-  </head>
-  <body>
-    <form action="http://localhost:8080/" method="get">
-      <div>x: <input name="x" /></div>
-      <div>y: <input name="y" /></div>
-      <div><button type="submit">Submit</button></div>
-    </form>
-  </body>
-</html>
+{{#include source/form-get.html}}
 ```
 
 - `form`元素包裹的区域为表单主体
