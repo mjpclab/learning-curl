@@ -1,0 +1,11 @@
+[book]
+authors = ["MJ PC Lab"]
+language = "zh-CN"
+multilingual = false
+title = "学习curl"
+
+[build]
+build-dir = "dist"
+
+[preprocessor.chapter-zero]
+levels = [0]
