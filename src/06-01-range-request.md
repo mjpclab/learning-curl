@@ -27,7 +27,7 @@ User-Agent: curl/8.10.1
 ```
 
 ```shell
-$ curl -i -I http://localhost:8080
+$ curl -I http://localhost:8080
 HTTP/1.1 200 OK
 Content-Type: text/plain
 Date: Sat, 12 Oct 2024 13:22:36 GMT
