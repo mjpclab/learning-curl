@@ -3,7 +3,7 @@
 build:
 	mdbook build
 dev:
-	mdbook serve
+	mdbook serve -n [::]
 clean:
 	rm -rf dist/
 init:

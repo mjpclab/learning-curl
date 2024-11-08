@@ -190,7 +190,7 @@ User-Agent: curl/8.10.1
 [1-0] == Info: Connection #0 to host localhost left intact
 ```
 
-上例中第一个请求的标识为`[0-0]`，传输号为`0`，连接号也为`0`。而第二个请求的标识为`[1-0]`，传输号为`1`，以区别于第一个URL请求，而连接号依旧为`0`，说明curl复用了第一个请求所使用的连接，从日志`[1-0] == Info: Re-using existing connection with host localhost`当中也能印证这一点。
+上例中第一个请求的标识为`[0-0]`，传输号为`0`，连接号也为`0`。而第二个请求的标识为`[1-0]`，传输号为`1`，以区别于第一个URL请求，而连接号依旧为`0`，说明curl复用了第一个请求所使用的连接，从日志`[1-0] == Info: Re-using existing connection with host localhost`中也能印证这一点。
 
 现在，我们故意使用两个不同的主机名去访问两个URL，看看标识会有何不同：
 
@@ -272,7 +272,7 @@ User-Agent: curl/8.10.1
 [1-1] == Info: Connection #1 to host 127.0.0.2 left intact
 ```
 
-由于请求了两个URL，依旧有两个传输号。而这次由于目标主机不同，curl不得不创建新的TCP连接，因而也有两个连接号。
+由于请求了两个URL，依旧有两个不同的传输号。而这次由于目标主机不同，curl不得不创建新的TCP连接，因而也有两个不同的连接号。
 
 ## 显示时间
 
