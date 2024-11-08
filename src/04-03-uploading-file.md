@@ -197,15 +197,15 @@ Content-Type: text/html
 
 需要注意的是，目前网上许多网盘服务并不使用标准的multipart/form-data格式上传文件，他们一般有定制的私有协议。
 
-### 上传文件到GHFS服务器
+### 上传文件到EHFS服务器
 
-为了验证我们构造的multipart/form-data数据格式正确，这次我们使用第二款用于练习的服务器：GHFS接受文件上传，看看上传后的文件是否有效。
+为了验证我们构造的multipart/form-data数据格式正确，这次我们使用第二款用于练习的服务器：EHFS接受文件上传，看看上传后的文件是否有效。
 
 假设我们将把本地目录`/tmp/upload`用于共享，且允许用户上传文件：
 
 ```shell
 $ mkdir /tmp/upload
-$ ghfs --listen 8081 --root /tmp/upload --upload /
+$ ehfs --listen 8081 --root /tmp/upload --upload /
 ```
 
 再打开一个新的终端，先确认目录中没有文件：

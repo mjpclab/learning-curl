@@ -34,15 +34,15 @@ Date: Sat, 12 Oct 2024 13:22:36 GMT
 Content-Length: 156
 ```
 
-现在我们创建一个共享目录，并用GHFS共享出该目录：
+现在我们创建一个共享目录，并用EHFS共享出该目录：
 
 ```shell
 $ mkdir /tmp/share
 $ echo -n '0123456789abcdef' > /tmp/share/hex.txt
-$ ghfs -l 8081 -r /tmp/share/
+$ ehfs -l 8081 -r /tmp/share/
 ```
 
-让我们测试一下GHFS是否支持范围请求：
+让我们测试一下EHFS是否支持范围请求：
 
 ```shell
 $ curl -i http://localhost:8081/hex.txt
@@ -54,7 +54,7 @@ Content-Length: 16
 0123456789abcdef
 ```
 
-响应头中的`Accept-Ranges: bytes`说明GHFS支持对该URL进行范围请求。
+响应头中的`Accept-Ranges: bytes`说明EHFS支持对该URL进行范围请求。
 
 ## 范围请求格式
 
@@ -112,7 +112,7 @@ User-Agent: curl/8.10.1
 
 当服务器接受客户端对指定URL的范围请求时，其会输出状态码`206 Partial Content`，而不是`200 OK`。如果服务器拒绝输出范围，或者不支持范围请求，那么会像往常一样输出`200`状态码以及URL资源的完整内容。
 
-现在，我们对刚才启动的GHFS发起范围请求，看看其如何响应。
+现在，我们对刚才启动的EHFS发起范围请求，看看其如何响应。
 
 ```shell
 $ curl -i -r 0-4 http://localhost:8081/hex.txt

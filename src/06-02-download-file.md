@@ -1,12 +1,12 @@
 # 下载文件
 
-本节会大量使用GHFS，我们先准备好目录并启动GHFS，且通过`--archive`选项允许用户打包目录并下载：
+本节会大量使用EHFS，我们先准备好目录并启动EHFS，且通过`--archive`选项允许用户打包目录并下载：
 
 ```shell
 $ mkdir /tmp/share
 $ echo -n '0123456789abcdef' > /tmp/share/hex.txt
 $ echo -n 'foo bar' > /tmp/share/foobar.txt
-$ ghfs -l 8081 -r /tmp/share/ --archive /
+$ ehfs -l 8081 -r /tmp/share/ --archive /
 ```
 
 ## 指定输出位置
@@ -14,7 +14,7 @@ $ ghfs -l 8081 -r /tmp/share/ --archive /
 默认情况下，curl会把请求的响应体通过标准输出（stdout）打印到终端上。我们可以通过输出重定向或curl自身的`-o`或`--output`选项，将响应体输出到外部文件。
 
 ```shell
-# 请求GHFS URL
+# 请求EHFS URL
 $ curl http://localhost:8081/hex.txt > /tmp/hex1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -55,7 +55,7 @@ foo bar
 ```shell
 $ cd ~
 
-# 请求GHFS
+# 请求EHFS
 $ curl -O http://localhost:8081/hex.txt
 
 $ cat hex.txt
@@ -67,7 +67,7 @@ $ cat hex.txt
 ```shell
 $ rm -f ~/Downloads/hex.txt
 
-# 请求GHFS
+# 请求EHFS
 $ curl -O --output-dir ~/Downloads/ http://localhost:8081/hex.txt
 
 $ cat ~/Downloads/hex.txt
@@ -76,7 +76,7 @@ $ cat ~/Downloads/hex.txt
 
 ## 自动从`Content-Disposition`响应头提取文件名
 
-有些资源是通过URL对应的服务器端逻辑动态生成的，无法通过URL末尾部分正确地推断出文件名，通常服务器端程序会通过`Content-Disposition`响应头给出参考文件名。让我们先试试请求GHFS打包目录到zip文件的`HEAD`调用：
+有些资源是通过URL对应的服务器端逻辑动态生成的，无法通过URL末尾部分正确地推断出文件名，通常服务器端程序会通过`Content-Disposition`响应头给出参考文件名。让我们先试试请求EHFS打包目录到zip文件的`HEAD`调用：
 
 ```shell
 $ curl -I 'http://localhost:8081/?zip'

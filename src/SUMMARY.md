@@ -4,7 +4,7 @@
 - [前言](01-preface.md)
 - [练习专用服务器](02-00-practise-server.md)
   - [回显服务器](02-01-echo-server.md)
-  - [GHFS（Go HTTP File Server）](02-02-ghfs-server.md)
+  - [EHFS（Extra HTTP File Server）](02-02-ehfs-server.md)
 - [基本用法](03-basic-usage.md)
 - [提交数据](04-00-submitting-data.md)
   - [通过查询字符串提交数据](04-01-submitting-querystring.md)
