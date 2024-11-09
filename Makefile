@@ -1,6 +1,6 @@
 .PHONY: build dev clean init
 
-build:
+build: clean
 	mdbook build
 dev:
 	mdbook serve -n [::]

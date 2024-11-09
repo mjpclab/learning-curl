@@ -10,5 +10,7 @@ build-dir = "dist"
 [preprocessor.chapter-zero]
 levels = [0]
 
-[output.html.print]
-enable = false
+[output.html]
+git-repository-url = "https://github.com/mjpclab/learning-curl"
+print.enable = false
+playground.copyable = false
