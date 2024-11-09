@@ -12,7 +12,7 @@ curl命令之后可以跟随选项、选项的值或URL，都可以出现多次�
 
 选项与URL可以混排，任何不能被识别为选项或选项值的参数都会被当作URL。
 
-以下示例演示了同时请求2个URL，且混排指定了2个选项：
+以下示例演示了同时请求两个URL，且混排指定了2个选项：
 
 - `--request`指定使用POST方法
 - `--user-agent`指定了`User-Agent`请求头
@@ -40,6 +40,35 @@ Request 2
 ================================
 
 POST /bar HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: httpClient/1.0
+```
+
+要使某些选项只对其中一个URL生效，需要使用选项`-:`或`--next`将它们分割开来：
+
+```shell
+$ curl \
+--request POST \
+http://localhost:8080/foo \
+-: \
+--user-agent 'httpClient/1.0' \
+http://localhost:8080/bar
+
+================================
+Request 13
+================================
+
+POST /foo HTTP/1.1
+Host: localhost:8080
+Accept: */*
+User-Agent: curl/8.10.1
+
+================================
+Request 14
+================================
+
+GET /bar HTTP/1.1
 Host: localhost:8080
 Accept: */*
 User-Agent: httpClient/1.0
