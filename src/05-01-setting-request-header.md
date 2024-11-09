@@ -67,6 +67,22 @@ Host: localhost:8080
 User-Agent: curl/8.10.1
 ```
 
+要设置某个请求头为空值，在名称后接上分号即可：
+
+```shell
+$ curl -H 'foo;' http://localhost:8080
+
+================================
+Request 5
+================================
+
+GET / HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Foo: 
+User-Agent: curl/8.10.1
+```
+
 ## 快捷设置选项
 
 除了通用选项，curl还为常用请求头提供了快捷设置选项，使用时只需指定请求头的值，而无需显式指明请求头名称。
