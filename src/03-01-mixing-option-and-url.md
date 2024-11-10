@@ -20,19 +20,19 @@ http://localhost:8080/bar
 Request 1
 ================================
 
-POST /foo HTTP/1.1
+POST /foo HTTP/1.1          # <==== POST方法
 Host: localhost:8080
 Accept: */*
-User-Agent: httpClient/1.0
+User-Agent: httpClient/1.0  # <==== 自定义UA
 
 ================================
 Request 2
 ================================
 
-POST /bar HTTP/1.1
+POST /bar HTTP/1.1          # <==== POST方法
 Host: localhost:8080
 Accept: */*
-User-Agent: httpClient/1.0
+User-Agent: httpClient/1.0  # <==== 自定义UA
 ```
 
 要使某些选项只对其中一个URL生效，需要使用选项`-:`或`--next`将它们分割开来：
@@ -49,19 +49,19 @@ http://localhost:8080/bar
 Request 13
 ================================
 
-POST /foo HTTP/1.1
+POST /foo HTTP/1.1      # <==== POST方法
 Host: localhost:8080
 Accept: */*
-User-Agent: curl/8.10.1
+User-Agent: curl/8.10.1 # <==== 默认UA
 
 ================================
 Request 14
 ================================
 
-GET /bar HTTP/1.1
+GET /bar HTTP/1.1           # <==== 默认GET方法
 Host: localhost:8080
 Accept: */*
-User-Agent: httpClient/1.0
+User-Agent: httpClient/1.0  # <==== 自定义UA
 ```
 
 除了将无法识别为选项或其值的命令行参数自动当作URL，也可以用`--url`选项显式指定URL。
