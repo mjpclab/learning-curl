@@ -22,7 +22,7 @@ hello world
 可以看出，`-T`其实是一种快捷方式，我们可以用`-X`和`--data-binary`的组合实现同样的请求：
 
 ```shell
-$ curl -X PUT --data-binary @/tmp/greeting.txt http://localhost:8080
+$ curl -X PUT -H 'Content-Type:' --data-binary @/tmp/greeting.txt http://localhost:8080
 
 ================================
 Request 9
@@ -32,7 +32,6 @@ PUT / HTTP/1.1
 Host: localhost:8080
 Accept: */*
 Content-Length: 11
-Content-Type: application/x-www-form-urlencoded
 User-Agent: curl/8.10.1
 
 hello world

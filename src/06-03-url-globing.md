@@ -30,7 +30,7 @@ User-Agent: curl/8.10.1
 
 ## 序列通配符
 
-可将英文字母及数字用于序列通配符，用于指定值的范围，被包裹在`[]`中，可选指定的步进值，格式为`[start-end]`或`[start-end:step]`。
+可将英文字母及数字用于序列通配符，用于指定值的范围，被包裹在`[]`中，可选指定步进值，格式为`[start-end]`或`[start-end:step]`。
 
 ```shell
 $ curl http://localhost:8080/dictionary/[a-c]/words
