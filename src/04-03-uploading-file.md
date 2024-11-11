@@ -35,7 +35,7 @@ EOF
 
 ![上传文件的表单](image/upload.png)
 
-提交后我们得到如下回显：
+提交后得到如下回显：
 
 ```
 ================================
@@ -199,7 +199,7 @@ Content-Type: text/html
 
 ### 上传文件到EHFS服务器
 
-为了验证我们构造的multipart/form-data数据格式正确，这次我们使用第二款用于练习的服务器：EHFS接受文件上传，看看上传后的文件是否有效。
+为了验证我们构造的multipart/form-data数据格式正确，这次使用第二款用于练习的服务器：EHFS接受文件上传，看看上传后的文件是否有效。
 
 假设我们将把本地目录`/tmp/upload`用于共享，且允许用户上传文件：
 
@@ -214,7 +214,7 @@ $ ehfs --listen 8081 --root /tmp/upload --upload /
 $ ls /tmp/upload/
 ```
 
-我们使用`file`字段指定要上传的文件：
+然后使用`file`字段指定要上传的文件：
 
 ```shell
 $ curl \

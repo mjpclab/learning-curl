@@ -15,7 +15,7 @@ Content-Length: 42
 
 客户端收到了一个状态码为`301 Moved Permanently`的重定向响应，并通过`Location`响应头指示资源所在的位置。
 
-我们可以手动发起对新URL的访问，也可以使用curl的`-L`或`--location`选项自动跟随重定向：
+可以手动发起对新URL的访问，也可以使用curl的`-L`或`--location`选项自动跟随重定向：
 
 ```shell
 $ curl -i -L http://localhost:8081/docs

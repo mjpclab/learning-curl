@@ -1,6 +1,6 @@
 # 保持POST请求
 
-当我们使用诸如`-d`这样的选项来间接触发curl使用POST方法时，在跟随重定向后curl默认使用`GET`方法来请求后续资源：
+当使用诸如`-d`这样的选项间接导致curl使用POST方法时，在跟随重定向后curl默认使用`GET`方法来请求后续资源：
 
 ```shell
 $ curl -d 'foo=bar' -L -v http://localhost:8081/docs

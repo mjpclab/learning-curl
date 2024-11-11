@@ -6,7 +6,7 @@
 
 当用`HEAD`或`GET`请求服务器端某个URL时，如果服务器支持范围请求，那么在响应头中会包含`Accept-Ranges: bytes`，以此告知客户端服务器支持范围请求。
 
-我们先看下不支持范围请求的回显服务器的输出内容，用`-i`指示curl输出服务器端响应头：
+先看下不支持范围请求的回显服务器的输出内容，用`-i`指示curl输出服务器端响应头：
 
 ```shell
 $ curl -i http://localhost:8080
@@ -34,7 +34,7 @@ Date: Sat, 12 Oct 2024 13:22:36 GMT
 Content-Length: 156
 ```
 
-现在我们创建一个共享目录，并用EHFS共享出该目录：
+现在创建一个共享目录，并用EHFS共享出该目录：
 
 ```shell
 $ mkdir /tmp/share

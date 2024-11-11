@@ -6,7 +6,7 @@
 
 我们可以再打开一个终端来运行回显服务器，指定其工作在HTTPS（即TLS）模式。
 
-我们先生成一张自签名的测试证书：
+先生成一张自签名的测试证书：
 
 ```shell
 openssl req -x509 -newkey rsa:2048 -keyout /tmp/mysite.key -nodes -subj '/C=CN/ST=ZheJiang/L=HangZhou/O=CompanyName/OU=DepartmentName/CN=www.mysite.com' -days 365 -sha256 -out /tmp/mysite.crt
@@ -56,7 +56,7 @@ User-Agent: curl/8.10.1
 
 ## 协商TLS版本
 
-目前常用的TLS版本有1.1、1.2和1.3。客户端会和服务器端协商出双方都能支持的（一般选最大的）版本。我们可以通过选项`-v`让curl打印出详细的日志信息来检查：
+目前常用的TLS版本有1.1、1.2和1.3。客户端会和服务器端协商出双方都能支持的（一般选最大的）版本。可以通过选项`-v`让curl打印出详细的日志信息来检查：
 
 ```shell
  curl -k -v https://localhost:8443

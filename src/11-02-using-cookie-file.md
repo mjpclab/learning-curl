@@ -56,9 +56,9 @@ localhost       FALSE   /       FALSE   0       bar     2
 
 奇怪的是，原先的Cookie：`foo`丢失了，只剩下本次请求的`bar`。
 
-其实，在初始状态，curl认为没有任何Cookie被设置，当我们请求`/bar`时，`bar`就是当前域名下唯一的Cookie了。
+其实，在初始状态，curl认为没有任何Cookie被设置，当请求`/bar`时，`bar`就是当前域名下唯一的Cookie了。
 
-为了让curl知晓初始状态下已有的Cookie，我们需要使用`-b`选项，不过这次指定的是Cookie文件而不是字面值：
+为了让curl知晓初始状态下已有的Cookie，需要使用`-b`选项，不过这次指定的是Cookie文件而不是字面值：
 
 ```shell
 $ rm -f ~/cookie

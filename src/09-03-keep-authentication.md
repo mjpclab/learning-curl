@@ -1,6 +1,6 @@
 # 保持认证信息
 
-在跟随重定向后，认证信息`Authorization`请求头默认不会发送给非本域主机，因为它们默认是不受信任的，而本域主机默认受信任。
+在跟随重定向后，认证请求信息`Authorization`请求头默认不会发送给非本域主机，因为它们默认是不受信任的，而本域主机默认受信任。
 
 ```shell
 $ curl -v -L -u foo:bar http://localhost:8081/docs
@@ -13,7 +13,7 @@ $ curl -v -L -u foo:bar http://localhost:8081/docs
 * Server auth using Basic with user 'foo'
 > GET /docs HTTP/1.1
 > Host: localhost:8081
-> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证信息
+> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证请求
 > User-Agent: curl/8.10.1
 > Accept: */*
 > 
@@ -32,7 +32,7 @@ $ curl -v -L -u foo:bar http://localhost:8081/docs
 * Server auth using Basic with user 'foo'
 > GET /files/ HTTP/1.1
 > Host: localhost:8081
-> Authorization: Basic Zm9vOmJhcg==		# <==== 本域跟随请求附带认证信息
+> Authorization: Basic Zm9vOmJhcg==		# <==== 本域跟随请求附带认证请求
 > User-Agent: curl/8.10.1
 > Accept: */*
 > 
@@ -59,7 +59,7 @@ $ curl -v -L -u foo:bar http://localhost:8081/archive
 * Server auth using Basic with user 'foo'
 > GET /archive HTTP/1.1
 > Host: localhost:8081
-> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证信息
+> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证请求
 > User-Agent: curl/8.10.1
 > Accept: */*
 > 
@@ -78,7 +78,7 @@ $ curl -v -L -u foo:bar http://localhost:8081/archive
 * Connected to 127.0.0.31 (127.0.0.31) port 8081
 * using HTTP/1.x
 > GET /files/ HTTP/1.1
-> Host: 127.0.0.31:8081		# <==== 非本域请求没有附带认证信息
+> Host: 127.0.0.31:8081		# <==== 非本域请求没有附带认证请求
 > User-Agent: curl/8.10.1
 > Accept: */*
 > 
@@ -103,7 +103,7 @@ $ curl -v -L --location-trusted -u foo:bar http://localhost:8081/archive
 * Server auth using Basic with user 'foo'
 > GET /archive HTTP/1.1
 > Host: localhost:8081
-> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证信息
+> Authorization: Basic Zm9vOmJhcg==		# <==== 原始请求附带认证请求
 > User-Agent: curl/7.88.1
 > Accept: */*
 >
@@ -121,7 +121,7 @@ $ curl -v -L --location-trusted -u foo:bar http://localhost:8081/archive
 * Server auth using Basic with user 'foo'
 > GET /files/ HTTP/1.1
 > Host: 127.0.0.31:8081
-> Authorization: Basic Zm9vOmJhcg==		# <==== 非本域请求附带认证信息
+> Authorization: Basic Zm9vOmJhcg==		# <==== 非本域请求附带认证请求
 > User-Agent: curl/7.88.1
 > Accept: */*
 >
