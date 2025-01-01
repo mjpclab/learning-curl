@@ -1,4 +1,4 @@
-.*/
+.*
 echo-server/server
 echo-server/server.exe
 dist/
