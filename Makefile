@@ -7,4 +7,4 @@ dev:
 clean:
 	rm -rf dist/
 init:
-	cargo install mdbook mdbook-chapter-zero
+	cargo install mdbook
